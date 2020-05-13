@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node backend/app.js",
-    "dev": "backend/node_modules/.bin/nodemon backend/app.js"
+    "dev": "nodemon backend/app.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",

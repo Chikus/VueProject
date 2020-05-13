@@ -36,7 +36,7 @@ if (process.env.PRODUC === "on") {
 /*------------------------------ROUTES-------------------------*/
 app.get('/enableAcc/:id', async (req, res) => {
     const db = await MongoColl();
-    db.findOneAndUpdate(
+    await db.findOneAndUpdate(
         {_id: new mongodb.ObjectID(req.params.id)},
         {$set:{"enable": true}}
     ).then(
@@ -48,7 +48,7 @@ app.get('/enableAcc/:id', async (req, res) => {
 
 app.post('/login', async function(req, res){
     const db = await MongoColl();
-     db.findOne({
+     await db.findOne({
         "email": req.body.email
     }).then((result ) => {
          if(result.password === req.body.password
@@ -61,8 +61,11 @@ app.post('/login', async function(req, res){
             });
         } else {
             res.sendStatus(400);
-        }
-     }).catch(err => res.sendStatus(400))
+
+         }
+     }).catch(err =>
+             res.sendStatus(400)
+         )
 });
 
 app.post('/register', async function(req, res){
