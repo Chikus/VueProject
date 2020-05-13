@@ -34,7 +34,7 @@ if (process.env.PRODUC === "on") {
 }
 
 /*------------------------------ROUTES-------------------------*/
-app.get('/enableAcc/:id', async (req, res) => {
+app.post('/enableAcc/:id', async (req, res) => {
     const db = await MongoColl();
     await db.findOneAndUpdate(
         {_id: new mongodb.ObjectID(req.params.id)},
@@ -83,7 +83,7 @@ app.post('/register', async function(req, res){
                from: 'efra.arrambide@gmail.com',
                to: req.body.email,
                subject: 'Welcome to Abe',
-               text: `Click here to enable your account http://localhost:${port}/enableAcc/${newUser.insertedId}`
+               text: `Click here to enable your account https://nameless-forest-19281.herokuapp.com/enableAcc/${newUser.insertedId}`
            }, (error, info) => {
                if (error) {
                    console.log(error);
