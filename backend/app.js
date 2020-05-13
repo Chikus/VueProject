@@ -15,7 +15,7 @@ const port = process.env.PORT || 3001;
 if (process.env.PRODUC === "on") {
     const fs = require('fs');
     app.use(express.static(__dirname+'/dist/'));
-    app.get(/.*/,(req,rsp) => rsp.sendFile(__dirname +'/dist/index.html'));
+    //app.get(/.*/,(req,rsp) => rsp.sendFile(__dirname +'/dist/index.html'));
     /*
     require('https').createServer({key: fs.readFileSync('./certificates/NotForLicensees/client-key.pem'),
             cert: fs.readFileSync('./certificates/NotForLicensees/client-cert.pem')},
@@ -34,7 +34,7 @@ if (process.env.PRODUC === "on") {
 }
 
 /*------------------------------ROUTES-------------------------*/
-app.post('/enableAcc/:id', async (req, res) => {
+app.get('/enableAcc/:id', async (req, res) => {
     const db = await MongoColl();
     await db.findOneAndUpdate(
         {_id: new mongodb.ObjectID(req.params.id)},
