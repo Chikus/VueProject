@@ -139,7 +139,7 @@ function verifyToken (req, res, next) {
 
 async function MongoColl() {
     const client = await mongodb.MongoClient.connect(
-        'mongodb+srv://abe:123@abe-oemwi.mongodb.net/test?retryWrites=true&w=majority',
+        'mongodb+srv://Abe:Abe@cluster0-cjfng.mongodb.net/test?retryWrites=true&w=majority',
         {
             useNewUrlParser: true,
             useUnifiedTopology: true
