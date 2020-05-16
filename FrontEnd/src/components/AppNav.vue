@@ -34,12 +34,12 @@ export default {
 <style scoped>
 #nav {
   display: flex;
-  min-height: 80px;
+  min-height: 10%;
   padding: 0.2em 1em;
   background: linear-gradient(to right, #364A5F, #21456B);
 }
 .logo {
-  background-image: url("../views/images/logo.png");
+  background-image: url("../views/images/Home.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 30%;
@@ -72,13 +72,5 @@ a {
   cursor: pointer;
 }
 
-.nav-welcome + button {
-  margin-left: 0;
-}
 
-footer {
-  display:flex;
-  justify-content: center;
-  width: 100%;
-}
 </style>

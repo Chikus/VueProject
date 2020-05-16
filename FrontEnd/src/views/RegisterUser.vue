@@ -1,12 +1,11 @@
 <template>
-    <div>
-        <div class="wrapper">
-            <form class="login-box" @submit.prevent="register" >
-                <input  class="finput" v-model="name" type="text" name="name" placeholder="Name" >
-                <input  class="inputs" v-model="lastName" type="text" name="lastName" placeholder="Last Name" >
-                <input class="inputs" v-model="password" name="password" type="text" onfocus="this.value=''; this.type='password'" placeholder="Password" >
-                <input class="inputs"  v-model="email" type="email" name="email" placeholder="Email address" >
-                <button class="login" type="submit" name="button" >Register</button>
+    <div class="wrapper">
+        <form class="login-box" @submit.prevent="register" >
+            <input  class="finput" v-model="name" type="text" name="name" placeholder="Name" >
+            <input  class="inputs" v-model="lastName" type="text" name="lastName" placeholder="Last Name" >
+            <input class="inputs" v-model="password" name="password" type="text" onfocus="this.value=''; this.type='password'" placeholder="Password" >
+            <input class="inputs"  v-model="email" type="email" name="email" placeholder="Email address" >
+            <button class="login" type="submit" name="button" >Register</button>
 
             <ul>
                 <li v-for="(error, index) in errors" :key="index">
@@ -14,7 +13,6 @@
                 </li>
             </ul>
         </form>
-        </div>
     </div>
 </template>
 
@@ -54,11 +52,10 @@
 
 <style scoped>
     .wrapper {
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 900px;
     }
     .login-box{
         display:flex;
@@ -90,5 +87,13 @@
     }
     .login:hover{
         opacity: .8;
+    }
+
+    @media screen and (max-width: 683px) {
+        .login-box {
+            width: 80%;
+            height: 400px;
+            margin: 10%;
+        }
     }
 </style>

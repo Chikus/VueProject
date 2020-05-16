@@ -33,8 +33,9 @@ document.getElementsByTagName("body")[0].style.marginRight = 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-image: linear-gradient(rgba(55, 63, 70, 0.8), rgba(55, 63, 70, 0), rgba(55, 63, 70, 0)), url(views/images/background.jpg);
+  background-image: linear-gradient(rgba(55, 63, 70, 0.8), rgba(55, 63, 70, 0), rgba(55, 63, 70, 0)), url(views/images/s2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  height:100vh;
 }
 </style>
