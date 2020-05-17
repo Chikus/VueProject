@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MyApps from './views/MyApps.vue'
+import MyCv from './views/MyCv.vue'
 import RegisterUser from './views/RegisterUser.vue'
 import LoginUser from './views/LoginUser.vue'
 import Player from './views/Player.vue'
@@ -39,9 +39,9 @@ const router = new Router({
             component: RegisterUser
         },
         {
-            path: '/myapps',
-            name: 'myapps',
-            component: MyApps,
+            path: '/mycv',
+            name: 'mycv',
+            component: MyCv,
             meta: { requiresAuth: true }
         },
         {

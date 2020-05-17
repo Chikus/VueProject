@@ -11,7 +11,7 @@
     <div class="footer">
         <p class="copyright">All rights reserved. Copyright by Abe Corp. </p>
         <div class="social-media">
-            <p>Following on:</p>
+            <p class="follow">Following on:</p>
             <i class="social-roll" id="yo"></i>
             <i class="social-roll" id="fe"></i>
             <i class="social-roll" id="ins"></i>
@@ -27,7 +27,10 @@ import { authComputed } from '../vuex/helpers.js'
 export default {
   computed: {
     ...authComputed
-  }
+  },
+    beforeMount() {
+        document.getElementById("app").style.flexFlow = "column";
+    }
 }
 </script>
 <style scoped>
@@ -43,33 +46,35 @@ export default {
         height:50vh;
     }
     .footer {
-        display:flex;
-        font-size:1.5vh;
-        flex-flow:row;
-        position:absolute;
-        bottom:0;
+        display: flex;
+        font-size: 1.5vh;
+        flex-flow: row;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
         width: 100%;
         background-color: #262b30;
-        opacity: .6;
     }
 
     p.copyright {
         color: darkgrey;
-        width:80%;
+        width:50%;
     }
     .social-media {
-        justify-content:space-around;
         align-items:center;
-        height: 45px;
-        width: 30%;
+        width: 50%;
         display: flex;
     }
+    .follow {
+        margin-left:50%;
+    }
     .social-roll {
+        margin:0 4px 0 4px;
         height: 20px;
         width: 20px;
         background-size: cover;
         background-repeat: no-repeat;
-        opacity: 0.3;
+        opacity: 0.7;
     }
 
     #yo {
@@ -93,5 +98,10 @@ export default {
     }
     .social-roll:hover {
         opacity: 1;
+    }
+    @media screen and (max-width: 960px) {
+        .follow {
+            margin-left: 10%;
+        }
     }
 </style>

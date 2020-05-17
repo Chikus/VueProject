@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <form class="login-box" @submit.prevent="register" >
-            <input  class="finput" v-model="name" type="text" name="name" placeholder="Name" >
+            <input  class="inputs" v-model="name" type="text" name="name" placeholder="Name" >
             <input  class="inputs" v-model="lastName" type="text" name="lastName" placeholder="Last Name" >
             <input class="inputs" v-model="password" name="password" type="text" onfocus="this.value=''; this.type='password'" placeholder="Password" >
             <input class="inputs"  v-model="email" type="email" name="email" placeholder="Email address" >
@@ -61,13 +61,14 @@
         display:flex;
         flex-direction: column;
         align-items: center;
+        justify-content:center;
         margin:10%;
         width: 20%;
         height: 400px;
         border: 1px solid #dedcdc;
         background-color: whitesmoke;
     }
-    .inputs, .finput, .login{
+    .inputs, .login{
         height: 45px;
         width: 70%;
         border: 1px solid #dedcdc;
@@ -78,9 +79,7 @@
         font-weight: 600;
         background-color: white;
     }
-    .finput{
-        margin-top:40px;
-    }
+
     .login{
         background-color: #0097fe;
         color: white;

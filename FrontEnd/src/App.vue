@@ -16,10 +16,7 @@ export default {
     SysNav
   }
 }
-document.getElementsByTagName("body")[0].style.marginLeft = 0;
-document.getElementsByTagName("body")[0].style.marginTop = 0;
-document.getElementsByTagName("body")[0].style.marginBottom = 0;
-document.getElementsByTagName("body")[0].style.marginRight = 0;
+document.getElementsByTagName("body")[0].style.margin= 0;
 
 </script>
 
@@ -27,7 +24,7 @@ document.getElementsByTagName("body")[0].style.marginRight = 0;
 #app {
   display: flex;
   align-content: flex-start;
-  flex-direction: column;
+  flex-flow:column;
   font-family: Museo-sans, Helvetica, Arial, sans-serif;
   //font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1,10 +1,10 @@
 <template>
-    <div >
+    <div class="sysnav" >
         <router-link  to="/player">
             <p>PLAYER </p>
         </router-link>
-        <router-link  to="/myapps" class="blogin">
-            <p>MY APPS</p>
+        <router-link  to="/mycv" class="blogin">
+            <p>CURRICULUM</p>
         </router-link>
         <router-link to="/upload" class="bcreate">
             <p>UPLOAD</p>
@@ -19,6 +19,7 @@
             <p>LOGOUT</p>
         </button>
     </div>
+
 </template>
 
 <script>
@@ -27,58 +28,28 @@ export default {
         logout() {
             this.$store.dispatch('logout')
         }
+    },
+    beforeMount() {
+        document.getElementById("app").style.flexFlow = "row";
     }
 }
+
 </script>
 
 <style scoped>
-    #nav {
+    .sysnav {
         display: flex;
-        min-height: 80px;
-        padding: 0.2em 1em;
-        background: linear-gradient(to right, #364A5F, #21456B);
+        flex-flow: column;
+        background-color: black;
+        opacity: .8;
     }
-    .logo {
-        background-image: url("../views/images/logo.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 30%;
-    }
-    a {
-        font-weight: bold;
-        text-decoration: none;
-    }
-    .bcreate:hover, .blogin:hover {opacity: .8}
-
-    .bcreate, .blogin {
-        border-radius: 8px;
-        color: white;
-        width:10%;
-    &.router-link-active {
-         color: #2c3e50;
-     }
-    }
-    .bcreate{
-        margin: 20px 10px 20px 10px;
-        background-color: #E0A905;
-    }
-
-    .blogin{
-        margin: 20px 10px 20px auto;
-        background-color: #31ABED;
-    }
-
     .logoutButton {
+        background-color:wheat;
         cursor: pointer;
+        margin-top:auto;
     }
-
-    .nav-welcome + button {
-        margin-left: 0;
-    }
-
-    footer {
-        display:flex;
-        justify-content: center;
-        width: 100%;
+    a.active {
+        background-color: #4CAF50;
+        color: white;
     }
 </style>
