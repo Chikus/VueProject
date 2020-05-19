@@ -1,7 +1,7 @@
+/FrontEnd
 /node_modules
 /backend/node_modules
 /FrontEnd/node_modules
 /.vs
 package-lock.json
 /FrontEnd/src/assets
-/FrontEnd

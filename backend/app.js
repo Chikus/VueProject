@@ -49,23 +49,21 @@ app.get('/enableAcc/:id', async (req, res) => {
 app.post('/login', async function(req, res){
     const db = await MongoColl();
      await db.findOne({
-        "email": req.body.email
+        "user": req.body.user
     }).then((result ) => {
-         if(result.password === req.body.password
+         if(result.noword === req.body.noword
          && result.enable) {
             const token = jwt.sign(result, `${result._id}`);
             res.json({
                 token,
-                email: result.email,
+                user: result.user,
                 name: result.name
             });
         } else {
             res.sendStatus(400);
 
          }
-     }).catch(err =>
-             res.sendStatus(400)
-         )
+     }).catch(err => res.sendStatus(401))
 });
 
 app.post('/register', async function(req, res){
