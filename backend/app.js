@@ -40,13 +40,14 @@ app.get('/enableAcc/:id', async (req, res) => {
         {_id: new mongodb.ObjectID(req.params.id)},
         {$set:{"enable": true}}
     ).then(
-        res.sendStatus(200)
+        res.write('account enabled')
     ).catch(
         res.sendStatus(400)
     )
 });
 
-app.post('/login', async function(req, res){
+app.post('/login', async function (req, res) {
+    console.log(req.body.noword)
     const db = await MongoColl();
      await db.findOne({
         "user": req.body.user
@@ -95,18 +96,19 @@ app.post('/register', async function(req, res){
     const db = await MongoColl();
     try {
        await db.insertOne({
+            user: req.body.user,
             name: req.body.name,
-            lastName: req.body.lastName,
             email: req.body.email,
-            password: req.body.password,
+            noword: req.body.noword,
             enable: false,
             createdAt: new Date()
-        }).then((newUser) => {
+       }).then((newUser) => {
+           res.sendStatus(200);
            trans.sendMail({
                from: 'efra.arrambide@gmail.com',
                to: req.body.email,
                subject: 'Welcome to Abe',
-               text: `Click here to enable your account https://chikus.com/enableAcc/${newUser.insertedId}`
+               text: `Click here to enable your account https://chikus.herokuapp.com/enableAcc/${newUser.insertedId}`
            }, (error, info) => {
                if (error) {
                    console.log(error);
@@ -115,7 +117,6 @@ app.post('/register', async function(req, res){
                }
            })
        })
-        res.sendStatus(200);
     } catch (e) {
         res.sendStatus(400);
     }
