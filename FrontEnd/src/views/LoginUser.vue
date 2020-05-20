@@ -1,10 +1,11 @@
 <template>
     <div class="wrapper">
         <form class="login-box" @submit.prevent="login">
-            <input class="input-name" v-model="email" type="email" name="email" placeholder="Email address">
-            <input class="input-password" v-model="password" name="password" type="text" onfocus="this.value=''; this.type='password'" placeholder="Password" value>
+            <input class="input-name" v-model="user" type="text" name="text" placeholder="User name">
+            <input class="input-noword" v-model="pass" name="pass" type="text" onfocus="this.value=''; this.type='password'" placeholder="Password" value>
+            <span class="eformat">{{emsg}}</span>
             <button class="login" type="submit" name="button">Login</button>
-            <div class="psw"><a href="#">Forgot password?</a></div>
+            <router-link to="/forgot" class="psw">Forgot password or user?</router-link>         
         </form>
      </div>
 </template>
@@ -13,26 +14,35 @@
     export default {
         data () {
             return {
-                email: '',
-                password:null,
+                pass:'',
+                emsg:'',
+                user: '',
+                noword:null,
                 enc: new TextEncoder(),
                 error: null,
             }
         },
         methods: {
-             async login () {
-                 this.password = await crypto.subtle.digest('SHA-256', this.enc.encode(this.password));
-                 this.password = await Array.from(new Uint8Array(this.password)).map(b => b.toString(16).padStart(2, '0')).join('');
-                 this.$store
+            async login() {
+                this.noword = this.pass;
+                this.noword = await crypto.subtle.digest('SHA-256', this.enc.encode(this.noword));
+                this.noword = await Array.from(new Uint8Array(this.noword)).map(b => b.toString(16).padStart(2, '0')).join('');
+                this.emsg = '';
+                this.$store
                     .dispatch('login', {
-                        email: this.email,
-                        password: this.password
+                        user: this.user,
+                        noword: this.noword
                     })
                     .then(() => {
                         this.$router.push({ name: 'player' })
                     })
                     .catch(err => {
-                        this.error = err.response.data.error
+                        if (err.response.status === 401) {
+                            this.emsg="User doesn't exist";
+                        } else {
+                            this.emsg = 'Wrong password';
+                        }
+
                     })
             }
         }
@@ -46,6 +56,11 @@
     align-items: center;
     width: 100%;
 }
+    .eformat {
+        font-size: 1.5vh;
+        color:red;
+        font-weight:bold;
+    }
 .login-box{
     display:flex;
     flex-direction: column;
@@ -56,13 +71,14 @@
     height: 400px;
 }
 
-.input-name, .input-password{
+.input-name, .input-noword{
 height: 45px;
 width: 70%;
 border: 1px solid #dedcdc;
 border-radius: 2px;
 margin: 10px auto;
 padding: 0 16px;
+text-align:center;
 font-size: 12px;
 font-weight: 600;
 }

@@ -1,21 +1,21 @@
 <template>
     <div class="sysnav" >
-        <router-link  to="/player">
+        <router-link v-if="loggedIn" to="/player">
             <p>PLAYER </p>
         </router-link>
-        <router-link  to="/mycv" class="blogin">
+        <router-link v-if="loggedIn" to="/mycv" class="blogin">
             <p>CURRICULUM</p>
         </router-link>
-        <router-link to="/upload" class="bcreate">
+        <router-link v-if="loggedIn" to="/upload" class="bcreate">
             <p>UPLOAD</p>
         </router-link>
-        <router-link  to="/stat" class="bcreate">
+        <router-link  v-if="loggedIn" to="/stat" class="bcreate">
             <p>STATISTICS</p>
         </router-link>
-        <router-link  to="/shared" class="bcreate">
+        <router-link v-if="loggedIn" to="/shared" class="bcreate">
             <p>SHARED</p>
         </router-link>
-        <button type="button" class="logoutButton" @click="logout">
+        <button v-if="loggedIn" type="button" class="logoutButton" @click="logout">
             <p>LOGOUT</p>
         </button>
     </div>
@@ -23,10 +23,18 @@
 </template>
 
 <script>
+
+import { authComputed } from '../vuex/helpers.js'
+
 export default {
+    computed: {
+        ...authComputed
+    },
     methods: {
         logout() {
             this.$store.dispatch('logout')
+            //this.$router.push({ name: 'home' })
+            this.$router.push('/')
         }
     },
     beforeMount() {

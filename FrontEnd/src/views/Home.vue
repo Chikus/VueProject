@@ -42,7 +42,7 @@ export default {
     }
     .video{
         width: 50%;
-        margin:2%;
+        margin:10%;
         height:50vh;
     }
     .footer {
@@ -50,8 +50,6 @@ export default {
         font-size: 1.5vh;
         flex-flow: row;
         align-items: center;
-        position: absolute;
-        bottom: 0;
         width: 100%;
         background-color: #262b30;
     }

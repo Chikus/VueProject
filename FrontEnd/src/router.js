@@ -8,6 +8,8 @@ import Home from './views/Home.vue'
 import Shared from './views/Shared.vue'
 import Upload from './views/Upload.vue'
 import Stat from './views/Stat.vue'
+import Forgot from './views/Forgot.vue'
+
 
 
 
@@ -37,6 +39,11 @@ const router = new Router({
             path: '/register',
             name: 'register',
             component: RegisterUser
+        },
+        {
+            path: '/forgot',
+            name: 'forgot',
+            component: Forgot
         },
         {
             path: '/mycv',

@@ -1,20 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/" class="logo">
-    </router-link>
-    <router-link v-if="loggedIn" to="/player">
-      Player
-    </router-link>
-    <router-link v-if="!loggedIn" to="/login" class="blogin">
-      LOG IN
-    </router-link>
-    <router-link v-if="!loggedIn" to="/register" class="bcreate">
-      REGISTER
-    </router-link>
-    <button v-else type="button" class="logoutButton" @click="logout">
-      LOGOUT
-    </button>
-  </div>
+    <div id="nav">
+        <router-link to="/" class="logo">
+        </router-link>
+        <router-link v-if="loggedIn" to="/player">
+            Player
+        </router-link>
+        <router-link v-if="!loggedIn" to="/login" class="blogin">
+            LOG IN
+        </router-link>
+        <router-link v-if="!loggedIn" to="/register" class="bcreate">
+            REGISTER
+        </router-link>
+    </div>
 </template>
 
 <script>
@@ -29,7 +26,7 @@ import { authComputed } from '../vuex/helpers.js'
 <style scoped>
 #nav {
     display: flex;
-    min-height: 80px;
+    height: 8vh;
     padding: 0.2em 1em;
     background: linear-gradient(to right, #364A5F, #21456B);
     align-content:center;

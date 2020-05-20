@@ -9,7 +9,7 @@ export default new Vuex.Store({
         user: null
     },
     mutations: {
-        SET_USER_DATA (state, userData) {
+        SET_USER_DATA(state, userData) {
             state.user = userData
             localStorage.setItem('user', JSON.stringify(userData))
             axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`
@@ -17,14 +17,17 @@ export default new Vuex.Store({
         CLEAR_USER_DATA () {
             localStorage.removeItem('user')
             location.reload()
+        },
+        NO_MUTATION() {
+
         }
     },
     actions: {
         register ({ commit }, credentials) {
             return axios
                 .post('register', credentials)
-                .then(({ data }) => {
-                    commit('SET_USER_DATA', data)
+                .then(() => {
+                    commit('NO_MUTATION')
                 })
         },
         login ({ commit }, credentials) {
@@ -37,10 +40,17 @@ export default new Vuex.Store({
         logout ({ commit }) {
             commit('CLEAR_USER_DATA')
         },
+        forgot({ commit }, credentials) {
+            return axios
+                .post('forgot', credentials)
+                .then( () => {
+                    commit('NO_MUTATION')
+                })
+        },
         uploadFile( {commit}, infoFile) {
             console.log(infoFile);
             return axios.post('upload', infoFile)
-                .then((data) => {commit('CLEAR_USER_DATA',data)})
+                .then(() => {commit('NO_MUTATION')})
         }
     },
     getters: {
