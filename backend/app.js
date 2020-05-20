@@ -66,6 +66,31 @@ app.post('/login', async function(req, res){
      }).catch(err => res.sendStatus(401))
 });
 
+app.post('/forgot', async (req, res) => {
+    console.log('hola');
+    const db = await MongoColl();
+    await db.findOneAndUpdate(
+        { email: req.body.email },
+        { $set: { "noword": req.body.noword} }
+    ).then((result) => {
+        console.log(result);
+        trans.sendMail({
+            from: 'efra.arrambide@gmail.com',
+            to: req.body.email,
+            subject: 'Abe web user login',
+            text: `This is your user:${result.value.user} and this is your temporal password: ${req.body.nPass}`
+        }, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        })
+    }).catch(
+        res.sendStatus(400)
+    )
+});
+
 app.post('/register', async function(req, res){
     const db = await MongoColl();
     try {
@@ -81,7 +106,7 @@ app.post('/register', async function(req, res){
                from: 'efra.arrambide@gmail.com',
                to: req.body.email,
                subject: 'Welcome to Abe',
-               text: `Click here to enable your account https://nameless-forest-19281.herokuapp.com/enableAcc/${newUser.insertedId}`
+               text: `Click here to enable your account https://chikus.com/enableAcc/${newUser.insertedId}`
            }, (error, info) => {
                if (error) {
                    console.log(error);
@@ -90,7 +115,7 @@ app.post('/register', async function(req, res){
                }
            })
        })
-        res.write('Please go to ur email to enable your acc')
+        res.sendStatus(200);
     } catch (e) {
         res.sendStatus(400);
     }
