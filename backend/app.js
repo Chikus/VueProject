@@ -40,14 +40,13 @@ app.get('/enableAcc/:id', async (req, res) => {
         {_id: new mongodb.ObjectID(req.params.id)},
         {$set:{"enable": true}}
     ).then(
-        res.write('account enabled')
+        res.sendStatus(200)
     ).catch(
         res.sendStatus(400)
     )
 });
 
 app.post('/login', async function (req, res) {
-    console.log(req.body.noword)
     const db = await MongoColl();
      await db.findOne({
         "user": req.body.user
@@ -68,7 +67,6 @@ app.post('/login', async function (req, res) {
 });
 
 app.post('/forgot', async (req, res) => {
-    console.log('hola');
     const db = await MongoColl();
     await db.findOneAndUpdate(
         { email: req.body.email },
